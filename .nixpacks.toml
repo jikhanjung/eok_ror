@@ -9,3 +9,4 @@ cmds = ["bundle exec rails db:prepare"]
 
 [variables]
 BUNDLE_BUILD__PG = "--with-pg-config=/usr/bin/pg_config"
+RAILS_ENV = "production"
