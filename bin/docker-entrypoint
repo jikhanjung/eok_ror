@@ -1,8 +1,18 @@
 #!/bin/bash -e
 
+echo "=== Docker Entrypoint Debug ==="
+echo "RAILS_ENV: $RAILS_ENV"
+echo "DATABASE_URL: ${DATABASE_URL:0:30}..." 
+echo "PORT: $PORT"
+echo "Arguments: $@"
+echo "==============================="
+
 # If running the rails server then create or migrate existing database
 if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
+  echo "Running database preparation..."
   ./bin/rails db:prepare
+  echo "Database preparation completed."
 fi
 
+echo "Starting application: $@"
 exec "${@}"
