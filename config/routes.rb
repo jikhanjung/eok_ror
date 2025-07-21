@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   # Health check (no locale needed)
   get "up" => "rails/health#show", as: :rails_health_check
+  
+  # Simple root health check for Railway
+  get "/", to: redirect("/ko"), constraints: lambda { |req| req.host.include?('railway') }
 
   # Language switching routes
   scope "(:locale)", locale: /ko|en/, defaults: { locale: 'ko' } do
