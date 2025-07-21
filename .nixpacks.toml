@@ -5,7 +5,7 @@ apt = ["libpq-dev", "postgresql-client"]
 cmds = ["bundle config --global build.pg --with-pg-config=/usr/bin/pg_config", "bundle install"]
 
 [phases.deploy]
-cmds = ["bundle exec rails db:prepare"]
+cmds = ["RAILS_ENV=production bundle exec rails db:prepare"]
 
 [variables]
 BUNDLE_BUILD__PG = "--with-pg-config=/usr/bin/pg_config"
