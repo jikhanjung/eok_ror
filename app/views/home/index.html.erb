@@ -1,0 +1,396 @@
+<div class="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
+  <% unless user_signed_in? %>
+    <!-- Language Selector -->
+    <div class="absolute top-4 right-4 z-10">
+      <div class="text-xs text-slate-400">
+        <%= link_to root_path(locale: :ko), class: "#{I18n.locale == :ko ? 'text-blue-400 font-medium' : 'text-slate-400 hover:text-slate-300'} transition-colors" do %>
+          한국어
+        <% end %>
+        <span class="mx-1">|</span>
+        <%= link_to root_path(locale: :en), class: "#{I18n.locale == :en ? 'text-blue-400 font-medium' : 'text-slate-400 hover:text-slate-300'} transition-colors" do %>
+          English
+        <% end %>
+      </div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="relative py-32 lg:py-40">
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-800/30 to-slate-700/30"></div>
+      
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <!-- Logo and Tagline -->
+          <div class="mb-12">
+            <div class="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-br from-gray-800 to-gray-900 rounded-full mb-8 shadow-2xl">
+              <div class="relative">
+                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+                </svg>
+                <!-- Sound waves animation hint -->
+                <div class="absolute -right-2 -top-2 w-4 h-4 bg-blue-600 rounded-full animate-pulse opacity-70"></div>
+                <div class="absolute -right-4 -top-4 w-6 h-6 bg-blue-400 rounded-full animate-pulse opacity-40"></div>
+              </div>
+            </div>
+            
+            <h1 class="text-6xl lg:text-7xl font-light text-white mb-6 tracking-tight">
+              <%= t('home.main_title').split(' ')[0] %> <span class="text-slate-300"><%= t('home.title_of') %></span> <%= t('home.main_title').split(' ')[2] %>
+            </h1>
+            
+            <p class="text-2xl text-slate-300 mb-6 font-light">
+              <%= t('home.subtitle') %>
+            </p>
+            
+            <div class="w-24 h-0.5 bg-gradient-to-r from-blue-400 to-indigo-400 mx-auto mb-12"></div>
+          </div>
+
+          <!-- Vision Statement -->
+          <div class="max-w-4xl mx-auto mb-24">
+            <blockquote class="text-xl lg:text-2xl text-slate-200 leading-relaxed mb-8 italic font-light">
+              "<%= t('home.vision_quote') %>"
+            </blockquote>
+            
+            <p class="text-lg text-slate-300 leading-relaxed">
+              <%= t('home.vision_description') %>
+            </p>
+          </div>
+
+          <!-- Call to Action for Public -->
+          <div class="flex flex-col items-center space-y-8">
+            <!-- Public Access (Coming Soon) -->
+            <div class="bg-slate-700 rounded-2xl p-8 shadow-2xl border border-slate-600/50 max-w-lg mx-auto">
+              <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                  </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-white mb-3"><%= t('home.public_access_title') %></h3>
+                <p class="text-slate-300 leading-relaxed mb-6">
+                  <%= t('home.public_access_description') %>
+                </p>
+              </div>
+              
+              <div class="space-y-4">
+                <button disabled class="w-full bg-slate-700 text-slate-400 px-8 py-4 rounded-xl cursor-not-allowed flex items-center justify-center space-x-3">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+                  </svg>
+                  <span class="font-medium"><%= t('home.record_story') %></span>
+                  <span class="text-xs bg-slate-600 text-slate-300 px-2 py-1 rounded-full ml-2"><%= t('home.coming_soon') %></span>
+                </button>
+                
+                <div class="text-center">
+                  <p class="text-sm text-slate-400">
+                    <%= t('home.notification_text') %> 
+                    <a href="mailto:contact@echoesofkorea.org" class="text-blue-400 hover:text-blue-300 underline"><%= t('home.contact_us') %></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Research Access (Subtle) -->
+            <div class="text-center mt-8">
+              <p class="text-sm text-slate-400 mb-3"><%= t('home.researcher_prompt') %></p>
+              <%= link_to new_user_session_path, class: "inline-flex items-center text-slate-300 hover:text-white transition-colors duration-200 text-sm" do %>
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1721 9z"></path>
+                </svg>
+                <span class="underline"><%= t('home.researcher_login') %></span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="py-32 bg-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-20">
+          <h2 class="text-3xl lg:text-4xl font-light text-white mb-6"><%= t('home.stories_title') %></h2>
+          <div class="w-16 h-0.5 bg-gradient-to-r from-blue-400 to-indigo-400 mx-auto"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
+          <!-- Historical Memories -->
+          <div class="text-center group">
+            <div class="w-20 h-20 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300 shadow-lg">
+              <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-4"><%= t('home.historical_memories_title') %></h3>
+            <p class="text-slate-300 leading-relaxed">
+              <%= t('home.historical_memories_desc') %>
+            </p>
+          </div>
+
+          <!-- Diaspora Stories -->
+          <div class="text-center group">
+            <div class="w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300 shadow-lg">
+              <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-4"><%= t('home.diaspora_title') %></h3>
+            <p class="text-slate-300 leading-relaxed">
+              <%= t('home.diaspora_desc') %>
+            </p>
+          </div>
+
+          <!-- Cultural Heritage -->
+          <div class="text-center group">
+            <div class="w-20 h-20 bg-gradient-to-br from-violet-500 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300 shadow-lg">
+              <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-4"><%= t('home.cultural_heritage_title') %></h3>
+            <p class="text-slate-300 leading-relaxed">
+              <%= t('home.cultural_heritage_desc') %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Public Participation Section -->
+    <section class="py-32 bg-gradient-to-b from-slate-700 to-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-20">
+          <h2 class="text-3xl lg:text-4xl font-light text-white mb-6"><%= t('home.participation_title') %></h2>
+          <div class="w-16 h-0.5 bg-gradient-to-r from-blue-400 to-indigo-400 mx-auto mb-6"></div>
+          <p class="text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            <%= t('home.participation_desc') %>
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          <!-- Step 1 -->
+          <div class="text-center">
+            <div class="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl shadow-lg">
+              1
+            </div>
+            <h3 class="text-lg font-semibold text-white mb-2"><%= t('home.step_1_title') %></h3>
+            <p class="text-slate-300 text-sm">
+              <%= t('home.step_1_desc') %>
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="text-center">
+            <div class="w-16 h-16 bg-emerald-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl shadow-lg">
+              2
+            </div>
+            <h3 class="text-lg font-semibold text-white mb-2"><%= t('home.step_2_title') %></h3>
+            <p class="text-slate-300 text-sm">
+              <%= t('home.step_2_desc') %>
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="text-center">
+            <div class="w-16 h-16 bg-violet-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl shadow-lg">
+              3
+            </div>
+            <h3 class="text-lg font-semibold text-white mb-2"><%= t('home.step_3_title') %></h3>
+            <p class="text-slate-300 text-sm">
+              <%= t('home.step_3_desc') %>
+            </p>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="text-center">
+            <div class="w-16 h-16 bg-amber-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl shadow-lg">
+              4
+            </div>
+            <h3 class="text-lg font-semibold text-white mb-2"><%= t('home.step_4_title') %></h3>
+            <p class="text-slate-300 text-sm">
+              <%= t('home.step_4_desc') %>
+            </p>
+          </div>
+        </div>
+
+        <!-- Themes Preview -->
+        <div class="bg-slate-700 rounded-2xl p-8 shadow-2xl border border-slate-600/50 mt-8">
+          <h3 class="text-2xl font-light text-white text-center mb-8"><%= t('home.themes_title') %></h3>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Theme 1 -->
+            <div class="bg-slate-600 border border-slate-500/50 rounded-xl p-6 hover:bg-slate-500 transition-all duration-300 shadow-lg">
+              <div class="w-12 h-12 bg-amber-500 rounded-lg flex items-center justify-center mb-4 shadow-md">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <h4 class="text-lg font-semibold text-white mb-2"><%= t('home.theme_childhood_title') %></h4>
+              <p class="text-slate-300 text-sm"><%= t('home.theme_childhood_desc') %></p>
+            </div>
+
+            <!-- Theme 2 -->
+            <div class="bg-slate-600 border border-slate-500/50 rounded-xl p-6 hover:bg-slate-500 transition-all duration-300 shadow-lg">
+              <div class="w-12 h-12 bg-emerald-500 rounded-lg flex items-center justify-center mb-4 shadow-md">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
+                </svg>
+              </div>
+              <h4 class="text-lg font-semibold text-white mb-2"><%= t('home.theme_songs_title') %></h4>
+              <p class="text-slate-300 text-sm"><%= t('home.theme_songs_desc') %></p>
+            </div>
+
+            <!-- Theme 3 -->
+            <div class="bg-slate-600 border border-slate-500/50 rounded-xl p-6 hover:bg-slate-500 transition-all duration-300 shadow-lg">
+              <div class="w-12 h-12 bg-violet-500 rounded-lg flex items-center justify-center mb-4 shadow-md">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <h4 class="text-lg font-semibold text-white mb-2"><%= t('home.theme_overseas_title') %></h4>
+              <p class="text-slate-300 text-sm"><%= t('home.theme_overseas_desc') %></p>
+            </div>
+
+            <!-- Theme 4 -->
+            <div class="bg-slate-600 border border-slate-500/50 rounded-xl p-6 hover:bg-slate-500 transition-all duration-300 shadow-lg">
+              <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mb-4 shadow-md">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0A2.707 2.707 0 003 15.546V9.75A4.5 4.5 0 017.5 5.25h9A4.5 4.5 0 0121 9.75v5.796z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7.5 8.25h9m-9 3h9m-9 3h9"></path>
+                </svg>
+              </div>
+              <h4 class="text-lg font-semibold text-white mb-2"><%= t('home.theme_family_title') %></h4>
+              <p class="text-slate-300 text-sm"><%= t('home.theme_family_desc') %></p>
+            </div>
+
+            <!-- Theme 5 -->
+            <div class="bg-slate-600 border border-slate-500/50 rounded-xl p-6 hover:bg-slate-500 transition-all duration-300 shadow-lg">
+              <div class="w-12 h-12 bg-rose-500 rounded-lg flex items-center justify-center mb-4 shadow-md">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                </svg>
+              </div>
+              <h4 class="text-lg font-semibold text-white mb-2"><%= t('home.theme_turning_points_title') %></h4>
+              <p class="text-slate-300 text-sm"><%= t('home.theme_turning_points_desc') %></p>
+            </div>
+
+            <!-- Theme 6 -->
+            <div class="bg-slate-600 border border-slate-500/50 rounded-xl p-6 hover:bg-slate-500 transition-all duration-300 shadow-lg">
+              <div class="w-12 h-12 bg-teal-500 rounded-lg flex items-center justify-center mb-4 shadow-md">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                </svg>
+              </div>
+              <h4 class="text-lg font-semibold text-white mb-2"><%= t('home.theme_work_title') %></h4>
+              <p class="text-slate-300 text-sm"><%= t('home.theme_work_desc') %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-20">
+          <h2 class="text-3xl lg:text-4xl font-light text-white mb-6"><%= t('home.technology_title') %></h2>
+          <div class="w-16 h-0.5 bg-gradient-to-r from-blue-400 to-indigo-400 mx-auto"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <!-- Template Management -->
+          <div class="bg-slate-700 rounded-2xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-300 border border-slate-600/50">
+            <div class="w-14 h-14 bg-blue-500 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-4"><%= t('home.tech_templates_title') %></h3>
+            <p class="text-slate-300 leading-relaxed">
+              <%= t('home.tech_templates_desc') %>
+            </p>
+          </div>
+
+          <!-- Audio Recording -->
+          <div class="bg-slate-700 rounded-2xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-300 border border-slate-600/50">
+            <div class="w-14 h-14 bg-emerald-500 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-4"><%= t('home.tech_recording_title') %></h3>
+            <p class="text-slate-300 leading-relaxed">
+              <%= t('home.tech_recording_desc') %>
+            </p>
+          </div>
+
+          <!-- Research Analytics -->
+          <div class="bg-slate-700 rounded-2xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-300 border border-slate-600/50">
+            <div class="w-14 h-14 bg-violet-500 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-4"><%= t('home.tech_analytics_title') %></h3>
+            <p class="text-slate-300 leading-relaxed">
+              <%= t('home.tech_analytics_desc') %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <% else %>
+    <!-- Language Selector for Authenticated Users -->
+    <div class="absolute top-4 right-4 z-10">
+      <div class="text-xs text-slate-400">
+        <%= link_to root_path(locale: :ko), class: "#{I18n.locale == :ko ? 'text-blue-400 font-medium' : 'text-slate-400 hover:text-slate-300'} transition-colors" do %>
+          한국어
+        <% end %>
+        <span class="mx-1">|</span>
+        <%= link_to root_path(locale: :en), class: "#{I18n.locale == :en ? 'text-blue-400 font-medium' : 'text-slate-400 hover:text-slate-300'} transition-colors" do %>
+          English
+        <% end %>
+      </div>
+    </div>
+    
+    <!-- Authenticated User Welcome -->
+    <section class="min-h-screen flex items-center justify-center py-16">
+      <div class="max-w-2xl mx-auto px-4 text-center">
+        <div class="bg-slate-800/90 rounded-3xl p-12 shadow-2xl border border-slate-700/30">
+          <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-8">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+            </svg>
+          </div>
+          
+          <h2 class="text-3xl font-light text-white mb-4">
+            <%= t('home.welcome_user') %>, <span class="font-medium"><%= current_user.email %></span><%= t('home.user_greeting') %>
+          </h2>
+          
+          <% if current_user.is_admin? %>
+            <p class="text-lg text-slate-300 mb-8">
+              <%= t('home.admin_welcome_desc') %>
+            </p>
+            
+            <%= link_to admin_root_path, class: "inline-flex items-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-10 py-4 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 space-x-3 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5" do %>
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+              <span class="text-lg font-medium"><%= t('home.access_system') %></span>
+            <% end %>
+          <% else %>
+            <p class="text-lg text-slate-300 mb-8">
+              <%= t('home.non_admin_message') %>
+            </p>
+            
+            <%= link_to destroy_user_session_path, data: { "turbo-method": :delete }, class: "inline-flex items-center bg-gradient-to-r from-slate-600 to-slate-700 text-white px-8 py-3 rounded-xl hover:from-slate-700 hover:to-slate-800 transition-all duration-300 space-x-2" do %>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+              </svg>
+              <span><%= t('home.logout') %></span>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  <% end %>
+</div>

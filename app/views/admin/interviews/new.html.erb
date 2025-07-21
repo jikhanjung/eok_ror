@@ -1,0 +1,66 @@
+<% content_for :page_title, t('interviews.new_interview') %>
+
+<div class="mb-6">
+  <div class="flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-gray-900"><%= t('interviews.create_new_interview') %></h1>
+    <%= link_to t('interviews.back_to_interviews'), admin_interviews_path(locale: I18n.locale), class: "bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600" %>
+  </div>
+</div>
+
+<div class="bg-white rounded-lg shadow">
+  <div class="p-6">
+    <%= form_with(model: [:admin, @interview], local: true, class: "space-y-6") do |form| %>
+      <% if @interview.errors.any? %>
+        <div class="bg-red-50 border border-red-200 rounded-md p-4">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-3">
+              <h3 class="text-sm font-medium text-red-800">
+                <%= @interview.errors.count %><%= t('interviews.errors_prohibited') %>
+              </h3>
+              <div class="mt-2 text-sm text-red-700">
+                <ul class="list-disc pl-5 space-y-1">
+                  <% @interview.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <%= form.label :interviewee_name, t('interviews.interviewee_name'), class: "block text-sm font-medium text-gray-700" %>
+          <%= form.text_field :interviewee_name, class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm", placeholder: t('forms.placeholder.interviewee_name') %>
+        </div>
+
+        <div>
+          <%= form.label :interviewee_email, t('interviews.interviewee_email'), class: "block text-sm font-medium text-gray-700" %>
+          <%= form.email_field :interviewee_email, class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm", placeholder: t('forms.placeholder.interviewee_email') %>
+        </div>
+      </div>
+
+      <div>
+        <%= form.label :created_from_template_id, t('interviews.select_template'), class: "block text-sm font-medium text-gray-700" %>
+        <%= form.select :created_from_template_id, 
+                        options_from_collection_for_select(@templates, :id, :template_name, @interview.created_from_template_id), 
+                        { prompt: t('interviews.choose_template') },
+                        { class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" } %>
+        <p class="mt-2 text-sm text-gray-500">
+          <%= t('interviews.template_help') %>
+        </p>
+      </div>
+
+      <div class="flex justify-end space-x-3 pt-6 border-t border-gray-200">
+        <%= link_to t('common.cancel'), admin_interviews_path(locale: I18n.locale), class: "btn-cancel inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+        <%= form.submit t('interviews.create_interview'), class: "inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm bg-indigo-600 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500", style: "min-width: 120px; background-color: #4F46E5; color: white; border: 1px solid #4F46E5;" %>
+      </div>
+    <% end %>
+  </div>
+</div>

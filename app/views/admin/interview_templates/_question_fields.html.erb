@@ -1,0 +1,33 @@
+<div class="question-field border rounded-lg p-4 mb-4">
+  <%= form.hidden_field :id if form.object.persisted? %>
+  
+  <div class="flex justify-between items-start mb-4">
+    <h4 class="text-sm font-medium text-gray-700">
+      <%= t('public.question') %> <%= form.object.display_order + 1 if form.object.display_order %>
+    </h4>
+    <button type="button" class="remove-question text-red-600 hover:text-red-800">
+      <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+      </svg>
+    </button>
+  </div>
+  
+  <div class="space-y-4">
+    <div>
+      <%= form.label :question_text, t('templates.question_text'), class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_area :question_text, rows: 3, class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm", placeholder: t('forms.placeholder.question_text') %>
+    </div>
+    
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <%= form.label :display_order, t('templates.display_order'), class: "block text-sm font-medium text-gray-700" %>
+        <%= form.number_field :display_order, class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+      </div>
+      
+      <div>
+        <%= form.label :estimated_time_seconds, t('templates.estimated_time'), class: "block text-sm font-medium text-gray-700" %>
+        <%= form.number_field :estimated_time_seconds, placeholder: "300", class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+      </div>
+    </div>
+  </div>
+</div>

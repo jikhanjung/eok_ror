@@ -1,0 +1,17 @@
+<% content_for :page_title, "#{t('templates.edit_template')}: #{@interview_template.template_name}" %>
+
+<div class="mb-6">
+  <div class="flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-gray-900"><%= t('templates.edit_template') %>: <%= @interview_template.template_name %></h1>
+    <div class="space-x-2">
+      <%= link_to t('templates.view_template'), admin_interview_template_path(@interview_template, locale: I18n.locale), class: "bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600" %>
+      <%= link_to t('templates.back_to_templates'), admin_interview_templates_path(locale: I18n.locale), class: "bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600" %>
+    </div>
+  </div>
+</div>
+
+<div class="bg-white rounded-lg shadow">
+  <div class="p-6">
+    <%= render 'form', interview_template: @interview_template %>
+  </div>
+</div>

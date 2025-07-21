@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Echoes of Korea</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Fallback styles for buttons -->
+    <style>
+      /* Remove default page margins and padding */
+      html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      
+      input[type="submit"], button[type="submit"] {
+        background-color: #4F46E5 !important;
+        color: white !important;
+        padding: 8px 16px !important;
+        border: 1px solid #4F46E5 !important;
+        border-radius: 6px !important;
+        cursor: pointer !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        min-width: 120px !important;
+      }
+      
+      input[type="submit"]:hover, button[type="submit"]:hover {
+        background-color: #4338CA !important;
+        border-color: #4338CA !important;
+      }
+      
+      .btn-cancel {
+        background-color: white !important;
+        color: #374151 !important;
+        border: 1px solid #D1D5DB !important;
+      }
+      
+      .btn-cancel:hover {
+        background-color: #F9FAFB !important;
+      }
+    </style>
+  </head>
+
+  <body class="font-sans bg-gray-50">
+    <% if user_signed_in? && current_user.is_admin? %>
+      <!-- Admin Layout -->
+      <div class="min-h-screen flex">
+        <!-- Sidebar -->
+        <div class="w-64 bg-gradient-to-b from-slate-900 to-slate-800 shadow-xl">
+          <div class="p-6 border-b border-slate-700">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+                </svg>
+              </div>
+              <div>
+                <h1 class="text-lg font-semibold text-white">Echoes of Korea</h1>
+                <p class="text-xs text-slate-300">관리자 패널</p>
+              </div>
+            </div>
+          </div>
+          <nav class="mt-2 px-3">
+            <%= link_to admin_root_path(locale: I18n.locale), class: "flex items-center px-3 py-3 text-slate-300 hover:text-white hover:bg-slate-700/50 rounded-lg transition-all duration-200 group mb-1" do %>
+              <svg class="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+<%= t('nav.dashboard') %>
+            <% end %>
+            <%= link_to admin_interview_templates_path(locale: I18n.locale), class: "flex items-center px-3 py-3 text-slate-300 hover:text-white hover:bg-slate-700/50 rounded-lg transition-all duration-200 group mb-1" do %>
+              <svg class="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+<%= t('nav.templates') %>
+            <% end %>
+            <%= link_to admin_interviews_path(locale: I18n.locale), class: "flex items-center px-3 py-3 text-slate-300 hover:text-white hover:bg-slate-700/50 rounded-lg transition-all duration-200 group mb-1" do %>
+              <svg class="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+              </svg>
+<%= t('nav.interviews') %>
+            <% end %>
+            <!-- Language Switcher -->
+            <div class="mt-4 pt-4 border-t border-slate-700">
+              <p class="text-xs font-medium text-slate-400 mb-3 px-3">Language</p>
+              <div class="flex space-x-1 px-3">
+                <%= link_to url_for(locale: 'ko'), class: "flex-1 text-center py-2 px-3 text-xs rounded transition-all duration-200 #{I18n.locale == :ko ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-700/50'}" do %>
+                  한국어
+                <% end %>
+                <%= link_to url_for(locale: 'en'), class: "flex-1 text-center py-2 px-3 text-xs rounded transition-all duration-200 #{I18n.locale == :en ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-700/50'}" do %>
+                  English
+                <% end %>
+              </div>
+            </div>
+            
+            <div class="mt-4 pt-4 border-t border-slate-700">
+              <%= link_to admin_account_path(locale: I18n.locale), class: "flex items-center px-3 py-3 text-slate-300 hover:text-white hover:bg-slate-700/50 rounded-lg transition-all duration-200 group mb-1" do %>
+                <svg class="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <%= t('account.title') %>
+              <% end %>
+              <%= link_to destroy_user_session_path(locale: I18n.locale), data: { "turbo-method": :delete }, class: "flex items-center px-3 py-3 text-slate-400 hover:text-red-300 hover:bg-red-900/20 rounded-lg transition-all duration-200 group" do %>
+                <svg class="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                </svg>
+<%= t('nav.logout') %>
+              <% end %>
+            </div>
+          </nav>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col bg-slate-50">
+          <header class="bg-white/80 backdrop-blur-sm border-b border-slate-200 px-6 py-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 class="text-2xl font-light text-slate-800">
+                  <%= content_for?(:page_title) ? yield(:page_title) : "대시보드" %>
+                </h2>
+                <p class="text-sm text-slate-500 mt-1">인터뷰 시스템 관리 및 모니터링</p>
+              </div>
+              <div class="flex items-center space-x-3">
+                <div class="text-right">
+                  <p class="text-sm font-medium text-slate-700">관리자</p>
+                  <p class="text-xs text-slate-500"><%= current_user.email %></p>
+                </div>
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full flex items-center justify-center">
+                  <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </header>
+          
+          <main class="flex-1 p-6 space-y-6">
+            <% if notice %>
+              <div class="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
+                <%= notice %>
+              </div>
+            <% end %>
+            <% if alert %>
+              <div class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+                <%= alert %>
+              </div>
+            <% end %>
+            <%= yield %>
+          </main>
+        </div>
+      </div>
+    <% else %>
+      <!-- Public Layout -->
+      <div class="min-h-screen">
+        <% if notice %>
+          <div class="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded mx-4 mt-4">
+            <%= notice %>
+          </div>
+        <% end %>
+        <% if alert %>
+          <div class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded mx-4 mt-4">
+            <%= alert %>
+          </div>
+        <% end %>
+        <main class="container mx-auto px-4 py-8">
+          <%= yield %>
+        </main>
+      </div>
+    <% end %>
+  </body>
+</html>

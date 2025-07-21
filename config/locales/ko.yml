@@ -1,0 +1,279 @@
+ko:
+  # Common
+  common:
+    save: "저장"
+    cancel: "취소"
+    edit: "편집"
+    delete: "삭제"
+    view: "보기"
+    back: "뒤로가기"
+    confirm: "확인"
+    yes: "예"
+    no: "아니오"
+    actions: "작업"
+    created_at: "생성일"
+    updated_at: "수정일"
+    
+  # Navigation
+  nav:
+    dashboard: "대시보드"
+    templates: "템플릿"
+    interviews: "인터뷰"
+    logout: "로그아웃"
+    admin_panel: "관리자 패널"
+    
+  # Dashboard
+  dashboard:
+    title: "관리자 대시보드"
+    subtitle: "인터뷰 템플릿과 세션을 관리하고 결과를 모니터링하세요"
+    templates_count: "인터뷰 템플릿"
+    interviews_count: "진행된 인터뷰"
+    quick_actions: "빠른 작업"
+    new_template: "새 템플릿"
+    new_interview: "새 인터뷰"
+    recent_interviews: "최근 인터뷰"
+    no_interviews: "아직 인터뷰가 없습니다"
+    create_first_interview: "첫 인터뷰를 생성해보세요"
+    total_templates: "생성된 템플릿 수"
+    total_interviews: "총 인터뷰 세션"
+    ago: "전"
+    
+  # Interview Templates
+  templates:
+    title: "인터뷰 템플릿"
+    new_template: "새 템플릿 만들기"
+    edit_template: "템플릿 편집"
+    template_name: "템플릿 이름"
+    description: "설명"
+    questions: "질문"
+    add_question: "질문 추가"
+    question_text: "질문 내용"
+    display_order: "표시 순서"
+    estimated_time: "예상 시간 (초)"
+    create_template: "템플릿 생성"
+    update_template: "템플릿 업데이트"
+    no_templates: "템플릿이 없습니다"
+    questions_count: "개"
+    back_to_templates: "템플릿 목록으로"
+    create_new_template: "새 인터뷰 템플릿 만들기"
+    edit_template_title: "템플릿 편집"
+    view_template: "템플릿 보기"
+    no_questions_added: "아직 추가된 질문이 없습니다"
+    template_information: "템플릿 정보"
+    created_by: "생성자"
+    total_questions: "전체 질문 수"
+    unknown: "알 수 없음"
+    create_first_template: "첫 템플릿을 만들어보세요"
+    errors_prohibited: "개의 오류로 인해 이 템플릿을 저장할 수 없습니다:"
+    estimated_answer_time: "예상 답변 시간"
+    
+  # Interviews
+  interviews:
+    title: "인터뷰"
+    new_interview: "새 인터뷰 생성"
+    edit_interview: "인터뷰 편집"
+    interviewee_name: "인터뷰 대상자 이름"
+    interviewee_email: "인터뷰 대상자 이메일 (선택사항)"
+    select_template: "템플릿 선택"
+    choose_template: "템플릿을 선택하세요 (선택사항)"
+    template_help: "템플릿을 선택하면 자동으로 질문이 생성되거나, 빈 칸으로 두어 맞춤형 인터뷰를 만들 수 있습니다."
+    create_interview: "인터뷰 생성"
+    update_interview: "인터뷰 업데이트"
+    interview_link: "인터뷰 링크"
+    status: "상태"
+    progress: "진행률"
+    completed: "완료"
+    in_progress: "진행중"
+    pending: "대기중"
+    questions_completed: "질문 완료"
+    no_interviews: "인터뷰가 없습니다"
+    back_to_interviews: "인터뷰 목록으로"
+    create_new_interview: "새 인터뷰 생성"
+    create_first_interview: "첫 인터뷰를 만들어보세요"
+    interviewee: "인터뷰 대상자"
+    template: "템플릿"
+    created: "생성일"
+    custom_interview: "맞춤형 인터뷰"
+    answered: "답변됨"
+    public_link: "공개 링크"
+    copy: "복사"
+    questions_and_answers: "질문 & 답변"
+    no_answer: "답변 없음"
+    answer: "답변"
+    stt: "STT"
+    transcript: "전사문"
+    retry_transcription: "전사 재시도"
+    no_questions_in_interview: "이 인터뷰에는 질문이 없습니다."
+    link_copied: "링크가 클립보드에 복사되었습니다!"
+    errors_prohibited: "개의 오류로 인해 이 인터뷰를 저장할 수 없습니다:"
+    
+  # Public Interview
+  public:
+    welcome: "인터뷰에 참여해 주셔서 감사합니다"
+    hello: "안녕하세요"
+    interview_topic: "인터뷰 주제"
+    interview_instructions: "인터뷰 진행 방법"
+    instruction_1: "각 질문을 읽고 마이크 버튼을 클릭하여 녹음을 시작하세요"
+    instruction_2: "편안하게 답변해 주시면 됩니다"
+    instruction_3: "녹음이 완료되면 다음 질문으로 넘어가세요"
+    instruction_4: "모든 질문에 답변하신 후 '인터뷰 완료' 버튼을 클릭해 주세요"
+    question: "질문"
+    recording_start: "녹음 시작"
+    recording_stop: "녹음 중지"
+    click_to_start: "클릭하여 녹음 시작"
+    recording_in_progress: "녹음 중... 클릭하여 중지"
+    submit_answer: "답변 제출"
+    re_record: "다시 녹음"
+    recording_completed: "녹음 완료"
+    answer_completed: "답변 완료"
+    answer_pending: "답변 대기"
+    interview_complete: "인터뷰 완료"
+    complete_all_questions: "모든 질문에 답변 후 완료할 수 있습니다"
+    progress_label: "진행률"
+    percent_complete: "완료"
+    no_questions: "이 인터뷰에는 질문이 없습니다"
+    submitting: "제출 중..."
+    custom_interview: "맞춤형 인터뷰"
+    
+  # Status
+  status:
+    completed: "완료"
+    in_progress: "진행중"
+    pending: "대기중"
+    
+  # Forms
+  forms:
+    required: "필수"
+    optional: "선택사항"
+    placeholder:
+      template_name: "템플릿 이름을 입력하세요"
+      description: "템플릿 설명을 입력하세요 (선택사항)"
+      question_text: "질문을 입력하세요"
+      interviewee_name: "인터뷰 대상자 이름을 입력하세요"
+      interviewee_email: "인터뷰 대상자 이메일을 입력하세요"
+      email: "이메일 주소를 입력하세요"
+      
+  # Messages
+  messages:
+    created: "성공적으로 생성되었습니다"
+    updated: "성공적으로 업데이트되었습니다"
+    deleted: "성공적으로 삭제되었습니다"
+    error: "오류가 발생했습니다"
+    confirm_delete: "정말로 삭제하시겠습니까?"
+    
+  # Audio Recording
+  audio:
+    microphone_access_error: "마이크에 접근할 수 없습니다. 브라우저 설정에서 마이크 권한을 허용해 주세요."
+    no_recorded_audio: "녹음된 오디오가 없습니다."
+    submit_error: "답변 제출에 실패했습니다"
+    submit_error_generic: "답변 제출 중 오류가 발생했습니다."
+    unsupported_browser: "브라우저에서 오디오 요소를 지원하지 않습니다."
+    
+  # Time
+  time:
+    minutes: "분"
+    seconds: "초"
+    
+  # Home Page
+  home:
+    main_title: "Echoes of Korea"
+    title_of: "of"
+    subtitle: "시간과 국경을 초월한 한국인의 목소리"
+    vision_quote: "우리는 일제강점기와 한국전쟁을 겪은 세대의 개인적 경험부터, 전 세계에 흩어진 한인 디아스포라의 삶의 이야기까지, 잊혀질 수 있는 소중한 기억과 감정을 기록하고 보존합니다."
+    vision_description: "디지털 구술사 플랫폼을 통해 개인의 경험과 기억을 체계적으로 수집하고, 음성 인터뷰를 통해 생생한 이야기를 미래 세대에 전달하는 살아있는 아카이브입니다."
+    
+    # Public Access Section
+    public_access_title: "당신의 이야기를 들려주세요"
+    public_access_description: "곧 누구나 자신의 소중한 기억과 이야기를 남길 수 있는 공개 인터뷰 시스템이 오픈됩니다."
+    record_story: "내 이야기 녹음하기"
+    coming_soon: "준비중"
+    notification_text: "📧 오픈 소식을 받아보고 싶으시다면"
+    contact_us: "연락해 주세요"
+    
+    # Research Access
+    researcher_prompt: "연구자이신가요?"
+    researcher_login: "연구자 로그인"
+    
+    # Stories We Preserve Section
+    stories_title: "우리가 보존하는 이야기들"
+    historical_memories_title: "역사의 증언"
+    historical_memories_desc: "일제강점기와 한국전쟁을 겪은 세대의 개인적 경험과 기억을 소중히 기록합니다."
+    diaspora_title: "디아스포라의 목소리"
+    diaspora_desc: "전 세계에 흩어진 한인들의 삶의 이야기와 정체성을 담아냅니다."
+    cultural_heritage_title: "노래와 문화"
+    cultural_heritage_desc: "민요, 가요, 그리고 일상 속 노래를 통해 살아있는 문화유산을 보존합니다."
+    
+    # Public Participation Section
+    participation_title: "누구나 참여할 수 있는 이야기 수집"
+    participation_desc: "곧 오픈될 공개 플랫폼에서는 누구나 자신의 소중한 기억과 경험을 음성으로 기록하고 공유할 수 있습니다."
+    
+    # Steps
+    step_1_title: "주제 선택"
+    step_1_desc: "다양한 구술사 주제 중 관심 있는 분야를 선택하세요"
+    step_2_title: "질문 확인"
+    step_2_desc: "준비된 질문들을 미리 살펴보고 답변을 생각해보세요"
+    step_3_title: "음성 녹음"
+    step_3_desc: "편안한 환경에서 자신의 이야기를 음성으로 녹음하세요"
+    step_4_title: "아카이브 기여"
+    step_4_desc: "당신의 이야기가 소중한 디지털 유산으로 보존됩니다"
+    
+    # Themes
+    themes_title: "예정된 인터뷰 주제들"
+    theme_childhood_title: "어린 시절 기억"
+    theme_childhood_desc: "고향, 가족, 학교 생활 등 소중한 어린 시절의 추억들"
+    theme_songs_title: "전통 노래와 민요"
+    theme_songs_desc: "할머니, 할아버지께 배운 옛 노래와 지역 민요들"
+    theme_overseas_title: "해외 생활 경험"
+    theme_overseas_desc: "이민, 유학, 해외 거주 중 겪은 특별한 경험들"
+    theme_family_title: "가족사와 전통"
+    theme_family_desc: "집안 대대로 내려온 이야기와 전통 문화"
+    theme_turning_points_title: "인생의 전환점"
+    theme_turning_points_desc: "삶의 방향을 바꾼 특별한 순간들과 깨달음"
+    theme_work_title: "일과 직업 이야기"
+    theme_work_desc: "직업 생활, 창업, 은퇴 등 일터에서의 경험들"
+    
+    # Technology Section
+    technology_title: "체계적인 기록 시스템"
+    tech_templates_title: "체계적 질문 설계"
+    tech_templates_desc: "연구 목적에 맞는 인터뷰 템플릿을 설계하고 관리하여 일관성 있는 데이터 수집을 지원합니다."
+    tech_recording_title: "고품질 음성 기록"
+    tech_recording_desc: "웹 브라우저에서 직접 고품질 음성을 녹음하고, 자동 텍스트 변환을 통해 검색 가능한 아카이브를 구축합니다."
+    tech_analytics_title: "연구 분석 도구"
+    tech_analytics_desc: "수집된 구술 자료를 체계적으로 분석하고 시각화하여 연구자들에게 깊이 있는 인사이트를 제공합니다."
+    
+    # Authenticated User Section
+    welcome_user: "환영합니다"
+    user_greeting: "님"
+    admin_welcome_desc: "Echoes of Korea 연구 시스템에 로그인하셨습니다."
+    access_system: "연구 시스템 접속"
+    non_admin_message: "이 시스템은 승인된 연구자와 관리자만 접근할 수 있습니다."
+    logout: "로그아웃"
+    
+  # Account Management
+  account:
+    title: "계정 관리"
+    subtitle: "프로필 정보와 설정을 관리하세요"
+    profile_settings: "프로필 설정"
+    profile_description: "기본 계정 정보와 언어 설정을 변경할 수 있습니다"
+    email: "이메일"
+    preferred_language: "선호 언어"
+    korean: "한국어"
+    english: "English"
+    language_description: "인터페이스에서 사용할 언어를 선택하세요"
+    change_password: "비밀번호 변경"
+    current_password: "현재 비밀번호"
+    current_password_placeholder: "현재 비밀번호를 입력하세요"
+    current_password_help: "변경사항을 저장하려면 현재 비밀번호를 입력해야 합니다"
+    new_password: "새 비밀번호"
+    new_password_placeholder: "새 비밀번호를 입력하세요"
+    password_help: "비밀번호를 변경하지 않으려면 이 필드를 비워두세요"
+    confirm_password: "비밀번호 확인"
+    confirm_password_placeholder: "새 비밀번호를 다시 입력하세요"
+    save_changes: "변경사항 저장"
+    account_status: "계정 상태"
+    account_type: "계정 유형"
+    administrator: "관리자"
+    member_since: "가입일"
+    last_sign_in: "마지막 로그인"
+    never: "없음"
+    quick_stats: "빠른 통계"

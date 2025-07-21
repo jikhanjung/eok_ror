@@ -1,0 +1,265 @@
+<div class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 overflow-hidden">
+      <!-- Header -->
+      <div class="bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 text-white p-8">
+        <div class="flex items-center space-x-4">
+          <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-xl flex items-center justify-center">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+            </svg>
+          </div>
+          <div>
+            <h1 class="text-2xl font-light">Echoes of Korea</h1>
+            <p class="text-slate-300 text-sm"><%= t('public.welcome') %></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interview Info -->
+      <div class="p-8 border-b border-slate-100">
+        <div class="flex items-start space-x-4">
+          <div class="w-10 h-10 bg-gradient-to-br from-emerald-100 to-green-100 rounded-full flex items-center justify-center">
+            <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <h2 class="text-xl font-light text-slate-800 mb-3">
+              <%= t('public.hello') %>, <span class="font-medium text-slate-900"><%= @interview.interviewee_name %></span>님
+            </h2>
+            <% if @interview.created_from_template.present? %>
+              <div class="bg-slate-50 rounded-lg p-4">
+                <p class="text-slate-600 mb-2">
+                  <span class="inline-flex items-center text-sm font-medium text-slate-700">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                    </svg>
+<%= t('public.interview_topic') %>
+                  </span>
+                </p>
+                <p class="text-slate-800 font-medium"><%= @interview.created_from_template.template_name %></p>
+                <% if @interview.created_from_template.description.present? %>
+                  <p class="mt-2 text-sm text-slate-600">
+                    <%= @interview.created_from_template.description %>
+                  </p>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Instructions -->
+      <div class="px-8 py-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-slate-100">
+        <div class="flex items-start space-x-4">
+          <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-medium text-slate-800 mb-4"><%= t('public.interview_instructions') %></h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="flex items-start space-x-3">
+                <div class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-semibold">1</div>
+                <p class="text-sm text-slate-700"><%= t('public.instruction_1') %></p>
+              </div>
+              <div class="flex items-start space-x-3">
+                <div class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-semibold">2</div>
+                <p class="text-sm text-slate-700"><%= t('public.instruction_2') %></p>
+              </div>
+              <div class="flex items-start space-x-3">
+                <div class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-semibold">3</div>
+                <p class="text-sm text-slate-700"><%= t('public.instruction_3') %></p>
+              </div>
+              <div class="flex items-start space-x-3">
+                <div class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-semibold">4</div>
+                <p class="text-sm text-slate-700"><%= t('public.instruction_4') %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Questions -->
+      <div class="p-8">
+      <% if @interview_questions.any? %>
+        <div class="space-y-8" id="questions-container">
+          <% @interview_questions.each_with_index do |question, index| %>
+            <div class="bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 <%= question.answer.present? ? 'ring-2 ring-emerald-200 bg-gradient-to-br from-emerald-50/50 to-green-50/50' : 'hover:border-slate-300' %>" 
+                 data-question-id="<%= question.id %>"
+                 data-audio-recorder-target="questionCard">
+              
+              <div class="flex justify-between items-start mb-6">
+                <div class="flex items-center space-x-4">
+                  <div class="w-10 h-10 <%= question.answer.present? ? 'bg-gradient-to-br from-emerald-100 to-green-100' : 'bg-gradient-to-br from-blue-100 to-indigo-100' %> rounded-full flex items-center justify-center">
+                    <% if question.answer.present? %>
+                      <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                    <% else %>
+                      <span class="text-sm font-semibold text-blue-600"><%= index + 1 %></span>
+                    <% end %>
+                  </div>
+                  <h3 class="text-xl font-medium text-slate-800">
+                    <%= t('public.question') %> <%= index + 1 %>
+                  </h3>
+                </div>
+                <% if question.answer.present? %>
+                  <div class="flex items-center space-x-2">
+                    <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                    <span class="px-4 py-2 text-sm bg-gradient-to-r from-emerald-100 to-green-100 text-emerald-700 rounded-full font-medium" data-status-indicator>
+                      <%= t('public.answer_completed') %>
+                    </span>
+                  </div>
+                <% else %>
+                  <div class="flex items-center space-x-2">
+                    <div class="w-2 h-2 bg-slate-300 rounded-full"></div>
+                    <span class="px-4 py-2 text-sm bg-slate-100 text-slate-600 rounded-full font-medium" data-status-indicator>
+                      <%= t('public.answer_pending') %>
+                    </span>
+                  </div>
+                <% end %>
+              </div>
+
+              <div class="bg-slate-50 rounded-xl p-6 mb-6">
+                <p class="text-slate-700 text-lg leading-relaxed">
+                  <%= question.question_text %>
+                </p>
+              </div>
+
+              <% if question.answer.present? %>
+                <!-- Show existing answer -->
+                <div class="bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-200 rounded-xl p-6">
+                  <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center space-x-3">
+                      <div class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+                        <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                      </div>
+                      <span class="text-sm font-semibold text-emerald-700"><%= t('public.recording_completed') %></span>
+                    </div>
+                  </div>
+                  <% if question.answer.audio_file.attached? %>
+                    <div class="bg-white rounded-lg p-3">
+                      <audio controls class="w-full" style="border-radius: 6px;">
+                        <source src="<%= rails_blob_path(question.answer.audio_file) %>" type="<%= question.answer.audio_file.content_type %>">
+                        Your browser does not support the audio element.
+                      </audio>
+                    </div>
+                  <% end %>
+                </div>
+              <% else %>
+                <!-- Recording interface using Stimulus -->
+                <div class="<%= index > 0 ? 'hidden' : '' %>" 
+                     data-controller="audio-recorder"
+                     data-audio-recorder-question-id-value="<%= question.id %>"
+                     data-audio-recorder-interview-id-value="<%= @interview.unique_link_id %>"
+                     data-audio-recorder-locale-value="<%= I18n.locale %>">
+                  
+                  <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 p-6 rounded-xl">
+                    <div class="flex items-center space-x-6">
+                      <!-- Recording Button -->
+                      <button type="button" 
+                              class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 font-semibold text-lg flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                              data-audio-recorder-target="button"
+                              data-action="click->audio-recorder#toggleRecording">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+                        </svg>
+                        <span><%= t('public.recording_start') %></span>
+                      </button>
+                      
+                      <div class="flex-1">
+                        <div class="bg-white/70 rounded-lg p-4">
+                          <div class="text-sm font-medium text-slate-500" data-audio-recorder-target="status">
+                            <%= t('public.click_to_start') %>
+                          </div>
+                          <!-- Recording indicator (hidden by default) -->
+                          <div class="hidden flex items-center space-x-2 mt-2" data-audio-recorder-target="recordingIndicator">
+                            <div class="w-3 h-3 bg-red-600 rounded-full animate-pulse"></div>
+                            <span class="text-xs text-red-600 font-mono">Recording...</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Audio preview (hidden initially) -->
+                    <div class="mt-6 hidden">
+                      <div class="bg-white rounded-xl p-4 border border-slate-200">
+                        <audio controls class="w-full mb-4 hidden" data-audio-recorder-target="audioPlayer"></audio>
+                        <div class="flex space-x-3">
+                          <button type="button" 
+                                  class="hidden bg-gradient-to-r from-emerald-500 to-green-600 text-white px-6 py-3 rounded-lg hover:from-emerald-600 hover:to-green-700 font-medium transition-all duration-200 flex items-center space-x-2"
+                                  data-audio-recorder-target="submitButton"
+                                  data-action="click->audio-recorder#submitAnswer">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                            </svg>
+                            <span><%= t('public.submit_answer') %></span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+        <!-- Progress and Complete Interview Button -->
+        <div class="mt-12 text-center border-t border-slate-200 pt-8">
+          <% answered_count = @interview.answers.count %>
+          <% total_questions = @interview_questions.count %>
+          
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 mb-6 border border-slate-200">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+              <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+              <p class="text-sm font-medium text-slate-700">
+  <%= t('public.progress_label') %>: <span data-progress-text><%= answered_count %></span>/<%= total_questions %> <%= t('interviews.questions_completed') %>
+              </p>
+            </div>
+            <div class="w-full bg-slate-200 rounded-full h-3 mb-2">
+              <div class="bg-gradient-to-r from-blue-500 to-indigo-600 h-3 rounded-full transition-all duration-500 ease-out" 
+                   data-progress-bar
+                   style="width: <%= total_questions > 0 ? (answered_count.to_f / total_questions * 100).round : 0 %>%"></div>
+            </div>
+            <p class="text-xs text-slate-500"><span data-progress-text><%= total_questions > 0 ? (answered_count.to_f / total_questions * 100).round : 0 %></span>% <%= t('public.percent_complete') %></p>
+          </div>
+
+          <% if answered_count == total_questions && total_questions > 0 %>
+            <%= form_with url: "#", method: :patch, local: true, class: "inline" do |form| %>
+              <%= form.submit t('public.interview_complete'), 
+                              class: "bg-gradient-to-r from-emerald-500 to-green-600 text-white px-12 py-4 rounded-xl text-lg font-semibold hover:from-emerald-600 hover:to-green-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center space-x-3 mx-auto",
+                              style: "display: inline-flex; align-items: center; gap: 12px;",
+                              data: { complete_button: true } %>
+            <% end %>
+          <% else %>
+            <div class="bg-slate-100 text-slate-500 px-12 py-4 rounded-xl text-lg font-medium inline-flex items-center space-x-3 opacity-50 cursor-not-allowed"
+                 data-complete-button>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+              </svg>
+              <span><%= t('public.complete_all_questions') %></span>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="text-center py-16">
+          <div class="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-10 h-10 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <p class="text-slate-600 text-lg"><%= t('public.no_questions') %></p>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

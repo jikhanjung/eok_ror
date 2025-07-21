@@ -1,0 +1,85 @@
+<% content_for :page_title, @interview_template.template_name %>
+
+<div class="mb-6">
+  <div class="flex justify-between items-center">
+    <div>
+      <h1 class="text-2xl font-bold text-gray-900"><%= @interview_template.template_name %></h1>
+      <% if @interview_template.description.present? %>
+        <p class="mt-2 text-gray-600"><%= @interview_template.description %></p>
+      <% end %>
+    </div>
+    <div class="space-x-2">
+      <%= link_to t('templates.edit_template'), edit_admin_interview_template_path(@interview_template, locale: I18n.locale), class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
+      <%= link_to t('templates.back_to_templates'), admin_interview_templates_path(locale: I18n.locale), class: "bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600" %>
+    </div>
+  </div>
+</div>
+
+<div class="bg-white rounded-lg shadow">
+  <div class="p-6 border-b">
+    <h3 class="text-lg font-semibold text-gray-800">
+      <%= t('templates.questions') %> (<%= @interview_template.template_questions.count %>)
+    </h3>
+  </div>
+  
+  <div class="p-6">
+    <% if @interview_template.template_questions.any? %>
+      <div class="space-y-4">
+        <% @interview_template.template_questions.each_with_index do |question, index| %>
+          <div class="border rounded-lg p-4">
+            <div class="flex justify-between items-start">
+              <div class="flex-1">
+                <h4 class="font-medium text-gray-900 mb-2">
+                  <%= t('public.question') %> <%= question.display_order + 1 %>
+                </h4>
+                <p class="text-gray-700"><%= question.question_text %></p>
+                <% if question.estimated_time_seconds.present? %>
+                  <p class="text-sm text-gray-500 mt-2">
+                    <%= t('templates.estimated_answer_time') %>: <%= distance_of_time_in_words(question.estimated_time_seconds) %>
+                  </p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-gray-600 text-center py-8"><%= t('templates.no_questions_added') %></p>
+    <% end %>
+  </div>
+</div>
+
+<div class="mt-6 bg-white rounded-lg shadow">
+  <div class="p-6 border-b">
+    <h3 class="text-lg font-semibold text-gray-800"><%= t('templates.template_information') %></h3>
+  </div>
+  
+  <div class="p-6">
+    <dl class="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
+      <div>
+        <dt class="text-sm font-medium text-gray-500"><%= t('templates.created_by') %></dt>
+        <dd class="mt-1 text-sm text-gray-900">
+          <%= @interview_template.created_by&.email || t('templates.unknown') %>
+        </dd>
+      </div>
+      <div>
+        <dt class="text-sm font-medium text-gray-500"><%= t('common.created_at') %></dt>
+        <dd class="mt-1 text-sm text-gray-900">
+          <%= l(@interview_template.created_at, format: :long) %>
+        </dd>
+      </div>
+      <div>
+        <dt class="text-sm font-medium text-gray-500"><%= t('common.updated_at') %></dt>
+        <dd class="mt-1 text-sm text-gray-900">
+          <%= l(@interview_template.updated_at, format: :long) %>
+        </dd>
+      </div>
+      <div>
+        <dt class="text-sm font-medium text-gray-500"><%= t('templates.total_questions') %></dt>
+        <dd class="mt-1 text-sm text-gray-900">
+          <%= @interview_template.template_questions.count %>
+        </dd>
+      </div>
+    </dl>
+  </div>
+</div>

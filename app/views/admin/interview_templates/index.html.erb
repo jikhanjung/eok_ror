@@ -1,0 +1,53 @@
+<% content_for :page_title, t('templates.title') %>
+
+<div class="flex justify-between items-center mb-6">
+  <h1 class="text-2xl font-bold text-gray-900"><%= t('templates.title') %></h1>
+  <%= link_to t('templates.new_template'), new_admin_interview_template_path(locale: I18n.locale), class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
+</div>
+
+<div class="bg-white rounded-lg shadow overflow-hidden">
+  <% if @interview_templates.any? %>
+    <table class="w-full">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('templates.template_name') %></th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('templates.questions') %></th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('common.created_at') %></th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('common.actions') %></th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <% @interview_templates.each do |template| %>
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div>
+                <div class="text-sm font-medium text-gray-900"><%= template.template_name %></div>
+                <% if template.description.present? %>
+                  <div class="text-sm text-gray-500"><%= truncate(template.description, length: 50) %></div>
+                <% end %>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              <%= template.template_questions.count %> <%= t('templates.questions_count') %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <%= time_ago_in_words(template.created_at) %> <%= t('dashboard.ago') %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+              <%= link_to t('common.view'), admin_interview_template_path(template, locale: I18n.locale), class: "text-indigo-600 hover:text-indigo-900" %>
+              <%= link_to t('common.edit'), edit_admin_interview_template_path(template, locale: I18n.locale), class: "text-green-600 hover:text-green-900" %>
+              <%= link_to t('common.delete'), admin_interview_template_path(template, locale: I18n.locale), 
+                          data: { confirm: t('messages.confirm_delete'), turbo_method: :delete }, 
+                          class: "text-red-600 hover:text-red-900" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div class="p-6 text-center">
+      <p class="text-gray-600 mb-4"><%= t('templates.no_templates') %></p>
+      <%= link_to t('templates.create_first_template'), new_admin_interview_template_path(locale: I18n.locale), class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
+    </div>
+  <% end %>
+</div>
