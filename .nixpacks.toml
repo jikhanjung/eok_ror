@@ -1,0 +1,8 @@
+[packages]
+apt = ["libpq-dev", "postgresql-client"]
+
+[phases.build]
+cmds = ["bundle config --global build.pg --with-pg-config=/usr/bin/pg_config", "bundle install"]
+
+[variables]
+BUNDLE_BUILD__PG = "--with-pg-config=/usr/bin/pg_config"
